@@ -64,7 +64,11 @@ const FLList = (): JSX.Element => {
 
   const renderCard = (flCard: FLListCard): JSX.Element => (
     <>
-      <img key={flCard.id} src={flCard.images[0].image_url_small} />
+      <img
+        key={flCard.id}
+        src={flCard.images[0].image_url_small}
+        className={`${!!flCard.remark && 'fllist__highlighted'}`}
+      />
       {/* {flCard.remark && <p>{flCard.remark}</p>} */}
     </>
   );
