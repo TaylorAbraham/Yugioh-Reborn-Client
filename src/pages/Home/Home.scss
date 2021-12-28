@@ -1,0 +1,19 @@
+.home {
+  &__splash-img {
+    background: url('img/splash.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+  }
+
+  &__hero-text {
+    background-color: rgba(1, 1, 1, 0.7);
+    padding: 25px;
+    color: white;
+    margin: auto;
+  }
+}
