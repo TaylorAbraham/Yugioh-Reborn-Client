@@ -9,27 +9,6 @@ enum STATES {
   LOADING,
   DONE,
 }
-type CardImageInfo = {
-  id: number;
-  image_url: string;
-  image_url_small: string;
-};
-
-type FLListCard = {
-  id: number;
-  name: string;
-  images: CardImageInfo[];
-  legality: string;
-  remark: string;
-  notes: string;
-};
-
-type FLList = {
-  forbidden: FLListCard[];
-  limited: FLListCard[];
-  semiLimited: FLListCard[];
-  unlimited: FLListCard[];
-};
 
 type FLListResponse = FLList | ServerError;
 
@@ -62,18 +41,13 @@ const FLList = (): JSX.Element => {
     fetchFLList(`${SERVER_URL}/fllist`).catch(console.error);
   }, []);
 
-  const renderCard = (flCard: FLListCard): JSX.Element => (
-    <>
-      <img
-        key={flCard.id}
-        src={flCard.images[0].image_url_small}
-        className={`${!!flCard.remark && 'fllist__highlighted'}`}
-      />
-      {/* {flCard.remark && <p>{flCard.remark}</p>} */}
-    </>
+  const renderCard = (flCard: FLListItem): JSX.Element => (
+    <img
+      key={flCard.id}
+      src={flCard.card.images[0].image_url_small}
+      className={`${!!flCard.remark && 'fllist__highlighted'}`}
+    />
   );
-
-  // TODO: Add toggle for list view VS image view
 
   return (
     <div>
