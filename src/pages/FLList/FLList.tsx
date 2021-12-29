@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
-import { SERVER_URL } from '../../constants';
+import { SERVER_URL, SERVER_ERRORS } from '../../constants';
 import './FLList.scss';
 
 enum STATES {
@@ -14,7 +14,7 @@ type FLListResponse = FLList | ServerError;
 
 // Custom type guard
 const isFLList = (json: FLListResponse): json is FLList => {
-  return typeof (json as FLList).forbidden !== undefined;
+  return (json as FLList).forbidden !== undefined;
 };
 
 const FLList = (): JSX.Element => {
@@ -33,7 +33,7 @@ const FLList = (): JSX.Element => {
         if (json.error.type === SERVER_ERRORS.SERVER_NOT_STARTED) {
           setTimeout(() => {
             fetchFLList(url).catch(console.error);
-          }, 2000);
+          }, 10000);
         }
       }
     };
