@@ -7,6 +7,7 @@ type ServerError = {
 
 type Card = {
   id: number;
+  name: string;
   type: string;
   desc: string;
   atk?: number;
