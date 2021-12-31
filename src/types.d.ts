@@ -21,7 +21,10 @@ type Card = {
   archetype?: string;
   sets: CardSetInfo[];
   images: CardImageInfo[];
+  legality: LEGALITY;
 };
+
+type CardDB = Record<string, Card>;
 
 type CardSetInfo = {
   set_name: string;
@@ -51,3 +54,13 @@ type FLList = {
   semiLimited: FLListItem[];
   unlimited: FLListItem[];
 };
+
+type AddListItem = {
+  id: number;
+  card: Card;
+  setCode: string;
+  releaseDate: string;
+  notes?: string;
+};
+
+type AddList = AddListItem[];
