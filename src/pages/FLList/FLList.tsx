@@ -4,10 +4,10 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './FLList.scss';
 import { useCardInfoContext } from '../../components/CardInfoContext';
-import { FETCH_STATES } from '../../constants';
+import { FETCH_STATES, LEGALITY } from '../../constants';
 
 const FLList = (): JSX.Element => {
-  const { fetchState, flList } = useCardInfoContext();
+  const { fetchState, flList, cardDB } = useCardInfoContext();
 
   const renderCard = (flCard: FLListItem): JSX.Element => (
     <img
@@ -30,6 +30,12 @@ const FLList = (): JSX.Element => {
     flList.semiLimited.map((item) => {
       stringifiedFLList += `${item.card.id} 2 --${item.card.name}\n`;
     });
+    stringifiedFLList += '#Unlimited\n';
+    for (const [_id, card] of Object.entries(cardDB)) {
+      if (card.legality === LEGALITY.UNLIMITED) {
+        stringifiedFLList += `${card.id} 3 --${card.name}\n`;
+      }
+    }
 
     const element = document.createElement('a');
     element.setAttribute(

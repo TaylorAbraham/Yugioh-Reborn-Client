@@ -37,12 +37,6 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_',
       },
     ],
-    '@typescript-eslint/restrict-template-expressions': [
-      'error',
-      {
-        // Allow expressions like className=`class1 ${isActive && 'class1__active'}`
-        allowBoolean: true,
-      },
-    ],
+    '@typescript-eslint/restrict-template-expressions': 0,
   },
 };
