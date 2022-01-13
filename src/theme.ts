@@ -10,6 +10,14 @@ const theme = createTheme({
       main: purple[500],
     },
   },
+  typography: {
+    h1: {
+      fontSize: '2.75rem',
+    },
+    h2: {
+      fontSize: '1.75rem',
+    },
+  },
 });
 
 export default theme;

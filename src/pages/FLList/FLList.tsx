@@ -2,6 +2,7 @@ import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import BlockIcon from '@mui/icons-material/Block';
 import './FLList.scss';
 import { useCardInfoContext } from '../../components/CardInfoContext';
 import { FETCH_STATES, LEGALITY } from '../../constants';
@@ -10,11 +11,16 @@ const FLList = (): JSX.Element => {
   const { fetchState, flList, cardDB } = useCardInfoContext();
 
   const renderCard = (flCard: FLListItem): JSX.Element => (
-    <img
-      key={flCard.id}
-      src={flCard.card.images[0].image_url_small}
-      className={`${!!flCard.remark && 'fllist__highlighted'}`}
-    />
+    <div className="fllist__card">
+      <img
+        key={flCard.id}
+        src={flCard.card.images[0].image_url_small}
+        className={`fllist__card-img ${!!flCard.remark && 'fllist__card-img--highlighted'}`}
+      />
+      <Typography className="fllist__card-text" variant="body2">
+        {flCard.card.name}
+      </Typography>
+    </div>
   );
 
   const downloadFLList = (): void => {
@@ -57,21 +63,24 @@ const FLList = (): JSX.Element => {
         </div>
       )}
       {fetchState === FETCH_STATES.DONE && (
-        <>
-          <Button variant="contained" onClick={downloadFLList}>
+        <div className="fllist">
+          <Typography variant="h1" sx={{ mt: 3 }}>
+            Forbidden & Limited List
+          </Typography>
+          <Button variant="contained" onClick={downloadFLList} sx={{ m: 3 }}>
             Download Banlist
           </Button>
-          <div className="fllist__card-gallery">
-            <Typography variant="h3">Forbidden Cards</Typography>
-            {flList.forbidden.map(renderCard)}
-            <Typography variant="h3">Limited Cards</Typography>
-            {flList.limited.map(renderCard)}
-            <Typography variant="h3">Semi-Limited Cards</Typography>
-            {flList.semiLimited.map(renderCard)}
-            <Typography variant="h3">Newly Unlimited Cards</Typography>
-            {flList.unlimited.map(renderCard)}
-          </div>
-        </>
+          <Typography variant="h2">
+            Forbidden Cards <BlockIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
+          </Typography>
+          <div className="fllist__card-gallery">{flList.forbidden.map(renderCard)}</div>
+          <Typography variant="h2">Limited Cards</Typography>
+          <div className="fllist__card-gallery">{flList.limited.map(renderCard)}</div>
+          <Typography variant="h2">Semi-Limited Cards</Typography>
+          <div className="fllist__card-gallery">{flList.semiLimited.map(renderCard)}</div>
+          <Typography variant="h2">Newly Unlimited Cards</Typography>
+          <div className="fllist__card-gallery">{flList.unlimited.map(renderCard)}</div>
+        </div>
       )}
     </div>
   );
