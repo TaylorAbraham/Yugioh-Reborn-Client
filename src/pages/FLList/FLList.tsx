@@ -74,11 +74,17 @@ const FLList = (): JSX.Element => {
             Forbidden Cards <BlockIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
           <div className="fllist__card-gallery">{flList.forbidden.map(renderCard)}</div>
-          <Typography variant="h2">Limited Cards</Typography>
+          <Typography variant="h2" sx={{ mt: 4 }}>
+            Limited Cards
+          </Typography>
           <div className="fllist__card-gallery">{flList.limited.map(renderCard)}</div>
-          <Typography variant="h2">Semi-Limited Cards</Typography>
+          <Typography variant="h2" sx={{ mt: 4 }}>
+            Semi-Limited Cards
+          </Typography>
           <div className="fllist__card-gallery">{flList.semiLimited.map(renderCard)}</div>
-          <Typography variant="h2">Newly Unlimited Cards</Typography>
+          <Typography variant="h2" sx={{ mt: 4 }}>
+            Newly Unlimited Cards
+          </Typography>
           <div className="fllist__card-gallery">{flList.unlimited.map(renderCard)}</div>
         </div>
       )}
