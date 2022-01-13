@@ -19,6 +19,9 @@ const NavBar = (): JSX.Element => {
         <Link to="/fllist" className={`underline-link ${path === '/fllist' && 'current'}`}>
           <span className="inner">FORBIDDEN & LIMITED LIST</span>
         </Link>
+        <Link to="/addlist" className={`underline-link ${path === '/addlist' && 'current'}`}>
+          <span className="inner">ADDITION LIST</span>
+        </Link>
       </Toolbar>
     </AppBar>
   );
