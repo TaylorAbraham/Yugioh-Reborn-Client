@@ -2,6 +2,7 @@ import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import BlockIcon from '@mui/icons-material/Block';
 import './FLList.scss';
 import { useCardInfoContext } from '../../components/CardInfoContext';
@@ -11,13 +12,13 @@ const FLList = (): JSX.Element => {
   const { fetchState, flList, cardDB } = useCardInfoContext();
 
   const renderCard = (flCard: FLListItem): JSX.Element => (
-    <div className="fllist__card">
+    <div className="card-list__card">
       <img
         key={flCard.id}
-        src={flCard.card.images[0].image_url_small}
-        className={`fllist__card-img ${!!flCard.remark && 'fllist__card-img--highlighted'}`}
+        src={flCard.card.images[0].image_url}
+        className={`card-list__card-img ${!!flCard.remark && 'fllist__card-img--highlighted'}`}
       />
-      <Typography className="fllist__card-text" variant="body2">
+      <Typography className="card-list__card-text" variant="body2">
         {flCard.card.name}
       </Typography>
     </div>
@@ -63,9 +64,20 @@ const FLList = (): JSX.Element => {
         </div>
       )}
       {fetchState === FETCH_STATES.DONE && (
-        <div className="fllist">
+        <div className="card-list">
           <Typography variant="h1" sx={{ mt: 3 }}>
             Forbidden & Limited List
+          </Typography>
+          <Typography className="card-list__about" variant="body1" sx={{ mt: 1 }}>
+            This format&apos;s banlist is based on the TCG banlist of the time, which was the{' '}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://yugioh.fandom.com/wiki/October_2014_Lists_(TCG)"
+            >
+              October 2014 F&L list
+            </a>
+            . <OpenInNewIcon sx={{ fontSize: '1rem', mb: '-3px' }} />
           </Typography>
           <Button variant="contained" onClick={downloadFLList} sx={{ m: 3 }}>
             Download Banlist
@@ -73,19 +85,19 @@ const FLList = (): JSX.Element => {
           <Typography variant="h2">
             Forbidden Cards <BlockIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
-          <div className="fllist__card-gallery">{flList.forbidden.map(renderCard)}</div>
+          <div className="card-list__card-gallery">{flList.forbidden.map(renderCard)}</div>
           <Typography variant="h2" sx={{ mt: 4 }}>
             Limited Cards
           </Typography>
-          <div className="fllist__card-gallery">{flList.limited.map(renderCard)}</div>
+          <div className="card-list__card-gallery">{flList.limited.map(renderCard)}</div>
           <Typography variant="h2" sx={{ mt: 4 }}>
             Semi-Limited Cards
           </Typography>
-          <div className="fllist__card-gallery">{flList.semiLimited.map(renderCard)}</div>
+          <div className="card-list__card-gallery">{flList.semiLimited.map(renderCard)}</div>
           <Typography variant="h2" sx={{ mt: 4 }}>
             Newly Unlimited Cards
           </Typography>
-          <div className="fllist__card-gallery">{flList.unlimited.map(renderCard)}</div>
+          <div className="card-list__card-gallery">{flList.unlimited.map(renderCard)}</div>
         </div>
       )}
     </div>
