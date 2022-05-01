@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import './AddList.scss';
 import { useCardInfoContext } from '../../components/CardInfoContext';
 import Card from '../../components/Card';
@@ -22,20 +23,23 @@ const AddList = (): JSX.Element => {
             Addition List
           </Typography>
           <Typography className="card-list__about" variant="body1" sx={{ mt: 1, mb: 3 }}>
-            These are cards that were released after the format&apos;s snapshot, have been added to
-            the format as they follow the spirit of the format and enhance it.
+            These are cards that were released after the format&apos;s snapshot but have been added
+            as they follow the spirit of the format and enhance it.
           </Typography>
           {addList.map((group) => (
-            <div key={group.name}>
-              <Typography variant="h2" sx={{ mt: 3 }} align="center">
-                {group.name}
-              </Typography>
-              <div className="card-list__card-gallery">
-                {group.cards.map((addListItem) => (
-                  <Card card={addListItem.card} key={addListItem.id} />
-                ))}
+            <>
+              <Divider sx={{ my: 3 }} />
+              <div key={group.name}>
+                <Typography variant="h2" align="center">
+                  {group.name}
+                </Typography>
+                <div className="card-list__card-gallery">
+                  {group.cards.map((addListItem) => (
+                    <Card card={addListItem.card} key={addListItem.id} />
+                  ))}
+                </div>
               </div>
-            </div>
+            </>
           ))}
         </div>
       )}

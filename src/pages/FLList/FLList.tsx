@@ -2,6 +2,7 @@ import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import BlockIcon from '@mui/icons-material/Block';
 import Filter1Icon from '@mui/icons-material/Filter1';
@@ -71,8 +72,9 @@ const FLList = (): JSX.Element => {
             . <OpenInNewIcon sx={{ fontSize: '1rem', mb: '-3px' }} />
           </Typography>
           <Button variant="contained" onClick={downloadFLList} sx={{ m: 3 }}>
-            Download Banlist
+            Download Banlist + Addlist
           </Button>
+          <Divider sx={{ mt: 1, mb: 3 }} />
           <Typography variant="h2">
             Forbidden Cards <BlockIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
@@ -86,7 +88,8 @@ const FLList = (): JSX.Element => {
               />
             ))}
           </div>
-          <Typography variant="h2" sx={{ mt: 4 }}>
+          <Divider sx={{ my: 3 }} />
+          <Typography variant="h2">
             Limited Cards <Filter1Icon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
           <div className="card-list__card-gallery">
@@ -99,7 +102,8 @@ const FLList = (): JSX.Element => {
               />
             ))}
           </div>
-          <Typography variant="h2" sx={{ mt: 4 }}>
+          <Divider sx={{ my: 3 }} />
+          <Typography variant="h2">
             Semi-Limited Cards <Filter2Icon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
           <div className="card-list__card-gallery">
@@ -112,7 +116,8 @@ const FLList = (): JSX.Element => {
               />
             ))}
           </div>
-          <Typography variant="h2" sx={{ mt: 4 }}>
+          <Divider sx={{ my: 3 }} />
+          <Typography variant="h2">
             Newly Unlimited Cards <LockOpenIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
           <div className="card-list__card-gallery">
