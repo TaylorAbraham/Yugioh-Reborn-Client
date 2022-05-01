@@ -4,25 +4,16 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import BlockIcon from '@mui/icons-material/Block';
+import Filter1Icon from '@mui/icons-material/Filter1';
+import Filter2Icon from '@mui/icons-material/Filter2';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
 import './FLList.scss';
 import { useCardInfoContext } from '../../components/CardInfoContext';
+import Card from '../../components/Card';
 import { FETCH_STATES, LEGALITY } from '../../constants';
 
 const FLList = (): JSX.Element => {
   const { fetchState, flList, cardDB } = useCardInfoContext();
-
-  const renderCard = (flCard: FLListItem): JSX.Element => (
-    <div className="card-list__card">
-      <img
-        key={flCard.id}
-        src={flCard.card.images[0].image_url}
-        className={`card-list__card-img ${!!flCard.remark && 'fllist__card-img--highlighted'}`}
-      />
-      <Typography className="card-list__card-text" variant="body2">
-        {flCard.card.name}
-      </Typography>
-    </div>
-  );
 
   const downloadFLList = (): void => {
     let stringifiedFLList = '#[Yugioh Reborn]\n!Yugioh Reborn\n$whitelist\n#Forbidden\n';
@@ -85,19 +76,55 @@ const FLList = (): JSX.Element => {
           <Typography variant="h2">
             Forbidden Cards <BlockIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
-          <div className="card-list__card-gallery">{flList.forbidden.map(renderCard)}</div>
+          <div className="card-list__card-gallery">
+            {flList.forbidden.map((fLListItem) => (
+              <Card
+                card={fLListItem.card}
+                highlighted={!!fLListItem.remark}
+                remark={fLListItem.remark}
+                key={fLListItem.id}
+              />
+            ))}
+          </div>
           <Typography variant="h2" sx={{ mt: 4 }}>
-            Limited Cards
+            Limited Cards <Filter1Icon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
-          <div className="card-list__card-gallery">{flList.limited.map(renderCard)}</div>
+          <div className="card-list__card-gallery">
+            {flList.limited.map((fLListItem) => (
+              <Card
+                card={fLListItem.card}
+                highlighted={!!fLListItem.remark}
+                remark={fLListItem.remark}
+                key={fLListItem.id}
+              />
+            ))}
+          </div>
           <Typography variant="h2" sx={{ mt: 4 }}>
-            Semi-Limited Cards
+            Semi-Limited Cards <Filter2Icon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
-          <div className="card-list__card-gallery">{flList.semiLimited.map(renderCard)}</div>
+          <div className="card-list__card-gallery">
+            {flList.semiLimited.map((fLListItem) => (
+              <Card
+                card={fLListItem.card}
+                highlighted={!!fLListItem.remark}
+                remark={fLListItem.remark}
+                key={fLListItem.id}
+              />
+            ))}
+          </div>
           <Typography variant="h2" sx={{ mt: 4 }}>
-            Newly Unlimited Cards
+            Newly Unlimited Cards <LockOpenIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
-          <div className="card-list__card-gallery">{flList.unlimited.map(renderCard)}</div>
+          <div className="card-list__card-gallery">
+            {flList.unlimited.map((fLListItem) => (
+              <Card
+                card={fLListItem.card}
+                highlighted={!!fLListItem.remark}
+                remark={fLListItem.remark}
+                key={fLListItem.id}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>

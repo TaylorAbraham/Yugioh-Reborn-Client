@@ -1,25 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import './AddList.scss';
 import { useCardInfoContext } from '../../components/CardInfoContext';
+import Card from '../../components/Card';
 import { FETCH_STATES } from '../../constants';
 
 const AddList = (): JSX.Element => {
   const { fetchState, addList } = useCardInfoContext();
-
-  const renderCard = (addCard: AddListItem): JSX.Element => (
-    <div className="card-list__card">
-      <img
-        key={addCard.id}
-        src={addCard.card.images[0].image_url}
-        className="card-list__card-img"
-      />
-      <Typography className="card-list__card-text" variant="body2">
-        {addCard.card.name}
-      </Typography>
-    </div>
-  );
 
   return (
     <div>
@@ -37,7 +25,18 @@ const AddList = (): JSX.Element => {
             These are cards that were released after the format&apos;s snapshot, have been added to
             the format as they follow the spirit of the format and enhance it.
           </Typography>
-          <div className="card-list__card-gallery">{addList.map(renderCard)}</div>
+          {addList.map((group) => (
+            <div key={group.name}>
+              <Typography variant="h2" sx={{ mt: 3 }} align="center">
+                {group.name}
+              </Typography>
+              <div className="card-list__card-gallery">
+                {group.cards.map((addListItem) => (
+                  <Card card={addListItem.card} key={addListItem.id} />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
