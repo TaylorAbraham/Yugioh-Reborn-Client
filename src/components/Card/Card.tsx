@@ -13,8 +13,8 @@ const Card = ({ card, highlighted, remark }: CardProps): JSX.Element => {
 
   return (
     <div className="card">
-      <Typography className="card__text" variant="body2">
-        {card.name}
+      <Typography className={`card__text card__remark ${!remark && 'invisible'}`} variant="body2">
+        {remark || 'No Remark'}
       </Typography>
       <div className="card__img-container">
         <a
@@ -38,8 +38,8 @@ const Card = ({ card, highlighted, remark }: CardProps): JSX.Element => {
           />
         </a>
       </div>
-      <Typography className={`card__text card__remark ${!remark && 'invisible'}`} variant="body2">
-        {remark || 'No Remark'}
+      <Typography className="card__text" variant="body2">
+        {card.name}
       </Typography>
     </div>
   );
