@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import CardInfoProvider from './components/CardInfoContext';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
+import Decklists from './pages/Decklists';
 import FLList from './pages/FLList';
 import AddList from './pages/AddList';
 
@@ -14,6 +15,7 @@ const App = () => {
         <NavBar />
         <Routes>
           <Route index element={<Home />} />
+          <Route path="/decklists" element={<Decklists />} />
           <Route path="/fllist" element={<FLList />} />
           <Route path="/addlist" element={<AddList />} />
         </Routes>

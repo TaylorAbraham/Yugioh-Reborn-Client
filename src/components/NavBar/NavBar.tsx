@@ -16,6 +16,9 @@ const NavBar = (): JSX.Element => {
         <Link to="/" className={`underline-link ${path === '/' && 'current'}`}>
           <span className="inner">HOME</span>
         </Link>
+        <Link to="/decklists" className={`underline-link ${path === '/decklists' && 'current'}`}>
+          <span className="inner">DECKLISTS</span>
+        </Link>
         <Link to="/fllist" className={`underline-link ${path === '/fllist' && 'current'}`}>
           <span className="inner">FORBIDDEN & LIMITED LIST</span>
         </Link>

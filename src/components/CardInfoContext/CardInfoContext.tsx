@@ -3,12 +3,13 @@ import { FETCH_STATES, SERVER_ERRORS, SERVER_URL } from '../../constants';
 
 type CardInfoContextType = {
   cardDB: CardDB;
+  decklists: Decklists;
   flList: FLList;
   addList: AddList;
   fetchState: FETCH_STATES;
 };
 
-type AllCardInfo = { cardDB: CardDB; flList: FLList; addList: AddList };
+type AllCardInfo = { cardDB: CardDB; decklists: Decklists; flList: FLList; addList: AddList };
 
 type AllCardInfoResponse = AllCardInfo | ServerError;
 
@@ -18,6 +19,7 @@ const isAllCardInfo = (json: AllCardInfoResponse): json is AllCardInfo => {
 };
 const CardInfoContext = createContext<CardInfoContextType>({
   cardDB: {},
+  decklists: [],
   flList: { forbidden: [], limited: [], semiLimited: [], unlimited: [] },
   addList: [],
   fetchState: FETCH_STATES.INIT,
@@ -28,6 +30,7 @@ const CardInfoContext = createContext<CardInfoContextType>({
 const CardInfoProvider = ({ children }: { children?: React.ReactNode }): JSX.Element => {
   const [fetchState, setFetchState] = useState(FETCH_STATES.INIT);
   const [cardDB, setCardDB] = useState<CardDB>({});
+  const [decklists, setDecklists] = useState<Decklists>([]);
   const [flList, setFLList] = useState<FLList>({
     forbidden: [],
     limited: [],
@@ -38,7 +41,7 @@ const CardInfoProvider = ({ children }: { children?: React.ReactNode }): JSX.Ele
   useEffect(() => {
     const fetchAllCardInfo = async (): Promise<AllCardInfo> => {
       const res = await fetch(`${SERVER_URL}/allcardinfo`);
-      const json = (await res.json()) as AllCardInfoResponse;
+      const json = (await res.json()) as AllCardInfo | ServerError;
       if (isAllCardInfo(json)) {
         return json;
       } else {
@@ -58,6 +61,7 @@ const CardInfoProvider = ({ children }: { children?: React.ReactNode }): JSX.Ele
     fetchAllCardInfo()
       .then((res) => {
         setCardDB(res.cardDB);
+        setDecklists(res.decklists);
         setFLList(res.flList);
         setAddList(res.addList);
         setFetchState(FETCH_STATES.DONE);
@@ -68,7 +72,7 @@ const CardInfoProvider = ({ children }: { children?: React.ReactNode }): JSX.Ele
       });
   }, []);
   return (
-    <CardInfoContext.Provider value={{ cardDB, flList, addList, fetchState }}>
+    <CardInfoContext.Provider value={{ cardDB, decklists, flList, addList, fetchState }}>
       {children}
     </CardInfoContext.Provider>
   );

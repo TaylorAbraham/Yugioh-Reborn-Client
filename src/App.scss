@@ -13,5 +13,5 @@ hr {
 }
 
 .content {
-  height: calc(100vh - constants.$headerHeight);
+  min-height: calc(100vh - constants.$headerHeight);
 }

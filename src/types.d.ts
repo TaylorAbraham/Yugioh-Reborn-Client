@@ -21,7 +21,7 @@ type Card = {
   archetype?: string;
   sets: CardSetInfo[];
   images: CardImageInfo[];
-  legality: LEGALITY;
+  legality: number;
 };
 
 type CardDB = Record<string, Card>;
@@ -39,6 +39,20 @@ type CardImageInfo = {
   image_url: string;
   image_url_small: string;
 };
+
+type DecklistItem = {
+  quantity: number;
+  card: Card;
+};
+
+type Decklist = {
+  name: string;
+  description?: string;
+  mainDeck: DecklistItem[];
+  extraDeck: DecklistItem[];
+};
+
+type Decklists = Decklist[];
 
 type FLListItem = {
   id: number;

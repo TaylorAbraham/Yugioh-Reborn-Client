@@ -6,7 +6,6 @@ import ErrorCard from '../../components/ErrorCard';
 import { useCardInfoContext } from '../../components/CardInfoContext';
 import Card from '../../components/Card';
 import { FETCH_STATES } from '../../constants';
-import './AddList.scss';
 
 const AddList = (): JSX.Element => {
   const { fetchState, addList } = useCardInfoContext();
@@ -18,7 +17,7 @@ const AddList = (): JSX.Element => {
           <Typography variant="h1" sx={{ mt: 3 }}>
             Addition List
           </Typography>
-          <Typography className="card-list__about" variant="body1" sx={{ mt: 1, mb: 3 }}>
+          <Typography variant="body1" sx={{ mt: 1, mb: 3, textAlign: 'center', maxWidth: '45rem' }}>
             These are cards that were released after the format&apos;s snapshot but have been added
             as they follow the spirit of the format and enhance it.
           </Typography>
