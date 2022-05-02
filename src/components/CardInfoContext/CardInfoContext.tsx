@@ -46,7 +46,7 @@ const CardInfoProvider = ({ children }: { children?: React.ReactNode }): JSX.Ele
           return new Promise((resolve) =>
             setTimeout(() => {
               resolve(fetchAllCardInfo());
-            }, 10000),
+            }, 1000),
           );
         } else {
           throw new Error('An unknown fatal server error occurred.');

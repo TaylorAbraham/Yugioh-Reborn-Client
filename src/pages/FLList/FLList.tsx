@@ -1,5 +1,4 @@
 import React from 'react';
-import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
@@ -8,10 +7,12 @@ import BlockIcon from '@mui/icons-material/Block';
 import Filter1Icon from '@mui/icons-material/Filter1';
 import Filter2Icon from '@mui/icons-material/Filter2';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import './FLList.scss';
+import PageLoading from '../../components/PageLoading';
+import ErrorCard from '../../components/ErrorCard';
 import { useCardInfoContext } from '../../components/CardInfoContext';
 import Card from '../../components/Card';
 import { FETCH_STATES, LEGALITY } from '../../constants';
+import './FLList.scss';
 
 const FLList = (): JSX.Element => {
   const { fetchState, flList, cardDB } = useCardInfoContext();
@@ -49,12 +50,7 @@ const FLList = (): JSX.Element => {
   };
 
   return (
-    <div>
-      {fetchState === FETCH_STATES.LOADING && (
-        <div className="loading">
-          <CircularProgress size="5rem" />
-        </div>
-      )}
+    <div className="content">
       {fetchState === FETCH_STATES.DONE && (
         <div className="card-list">
           <Typography variant="h1" sx={{ mt: 3 }}>
@@ -132,6 +128,8 @@ const FLList = (): JSX.Element => {
           </div>
         </div>
       )}
+      {fetchState === FETCH_STATES.LOADING && <PageLoading />}
+      {fetchState === FETCH_STATES.ERROR && <ErrorCard />}
     </div>
   );
 };
