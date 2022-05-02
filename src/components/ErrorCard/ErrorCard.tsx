@@ -7,6 +7,8 @@ import CloudOffIcon from '@mui/icons-material/CloudOff';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 
+const githubIssuesUrl = 'https://github.com/TaylorAbraham/Yugioh-Reborn-Client/issues';
+
 const ErrorCard = (): JSX.Element => {
   return (
     <Card
@@ -32,13 +34,13 @@ const ErrorCard = (): JSX.Element => {
           <CloudOffIcon fontSize="large" sx={{ position: 'absolute', right: '37px' }} />
         </Box>
         <Typography variant="body2">
-          Apologies, the server cannot be reached. Please file an issue on Yugioh Reborn&apos;s
-          GitHub page letting me know that it is down, and I will resolve the issue as soon as I
-          can!
+          Apologies, the server cannot be reached. Please file an issue on{' '}
+          <Link href={githubIssuesUrl}>Yugioh Reborn&apos;s GitHub issues page</Link> letting me
+          know that it is down, and I will resolve the issue as soon as I can!
         </Typography>
       </CardContent>
       <CardActions>
-        <Link underline="hover" href="https://github.com/TaylorAbraham/Yugioh-Reborn-Client/issues">
+        <Link underline="hover" href={githubIssuesUrl}>
           View GitHub
         </Link>
       </CardActions>
