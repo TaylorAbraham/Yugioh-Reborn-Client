@@ -41,7 +41,7 @@ const Decklists = (): JSX.Element => {
                     <Card
                       card={mainDeckItem.card}
                       quantity={mainDeckItem.quantity}
-                      maxLegalQuantity={mainDeckItem.card.legality}
+                      legality={mainDeckItem.card.legality}
                       key={mainDeckItem.card.id}
                     />
                   ))}
@@ -51,7 +51,7 @@ const Decklists = (): JSX.Element => {
                     <Card
                       card={extraDeckItem.card}
                       quantity={extraDeckItem.quantity}
-                      maxLegalQuantity={extraDeckItem.card.legality}
+                      legality={extraDeckItem.card.legality}
                       key={extraDeckItem.card.id}
                     />
                   ))}

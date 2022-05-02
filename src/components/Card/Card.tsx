@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import FLIcon from './FLIcon';
 import './Card.scss';
 
 type CardProps = {
@@ -7,16 +9,10 @@ type CardProps = {
   highlighted?: boolean;
   remark?: string;
   quantity?: number;
-  maxLegalQuantity?: number;
+  legality?: number;
 };
 
-const Card = ({
-  card,
-  highlighted,
-  remark,
-  quantity,
-  maxLegalQuantity,
-}: CardProps): JSX.Element => {
+const Card = ({ card, highlighted, remark, quantity, legality }: CardProps): JSX.Element => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -53,6 +49,19 @@ const Card = ({
             onMouseOver={() => setIsHovered(true)}
             onMouseOut={() => setIsHovered(false)}
           />
+          {legality && legality < 3 && !isHovered && (
+            <Box
+              sx={{
+                fontSize: '2rem',
+                position: 'absolute',
+                color: 'black',
+                right: '3px',
+                top: '3px',
+              }}
+            >
+              <FLIcon legality={legality} />
+            </Box>
+          )}
         </a>
       </div>
       <Typography className="card__text" variant="body2">
