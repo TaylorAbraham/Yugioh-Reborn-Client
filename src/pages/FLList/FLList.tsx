@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import BlockIcon from '@mui/icons-material/Block';
-import Filter1Icon from '@mui/icons-material/Filter1';
+import LooksOneOutlinedIcon from '@mui/icons-material/LooksOneOutlined';
 import Filter2Icon from '@mui/icons-material/Filter2';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import PageLoading from '../../components/PageLoading';
@@ -86,7 +86,7 @@ const FLList = (): JSX.Element => {
           </div>
           <Divider sx={{ my: 3 }} />
           <Typography variant="h2">
-            Limited Cards <Filter1Icon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
+            Limited Cards <LooksOneOutlinedIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
           </Typography>
           <div className="card-list__card-gallery">
             {flList.limited.map((fLListItem) => (
