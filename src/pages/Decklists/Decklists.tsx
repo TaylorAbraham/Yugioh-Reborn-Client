@@ -1,6 +1,9 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import Backdrop from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
 import { useCardInfoContext } from '../../components/CardInfoContext';
 import { FETCH_STATES } from '../../constants';
 import PageLoading from '../../components/PageLoading';
@@ -9,6 +12,12 @@ import DeckCard from '../../components/DeckCard';
 
 const Decklists = (): JSX.Element => {
   const { fetchState, decklists } = useCardInfoContext();
+  const [modalIsOpen, setModalIsOpen] = React.useState(false);
+  const [currDecklist, setCurrDecklist] = React.useState<Decklist | undefined>(undefined);
+  const handleOpen = (decklist: Decklist) => {
+    setCurrDecklist(decklist);
+    setModalIsOpen(true);
+  };
 
   return (
     <div className="content">
@@ -30,9 +39,43 @@ const Decklists = (): JSX.Element => {
             }}
           >
             {decklists.map((decklist) => (
-              <DeckCard key={decklist.name} decklist={decklist} />
+              <DeckCard key={decklist.name} decklist={decklist} onClick={handleOpen} />
             ))}
           </Box>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={modalIsOpen}
+            onClose={() => setModalIsOpen(false)}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 500,
+            }}
+          >
+            <Fade in={modalIsOpen}>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  width: 400,
+                  bgcolor: 'background.paper',
+                  border: '2px solid #000',
+                  boxShadow: 24,
+                  p: 4,
+                }}
+              >
+                <Typography id="transition-modal-title" variant="h6" component="h2">
+                  {currDecklist?.name}
+                </Typography>
+                <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+                  {currDecklist?.description}
+                </Typography>
+              </Box>
+            </Fade>
+          </Modal>
         </div>
       )}
       {fetchState === FETCH_STATES.LOADING && <PageLoading />}
