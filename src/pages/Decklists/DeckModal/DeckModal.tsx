@@ -56,7 +56,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
             alignItems: 'center',
             minWidth: '80%',
             maxHeight: '90%',
-            overflow: 'scroll',
+            overflowY: 'scroll',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
