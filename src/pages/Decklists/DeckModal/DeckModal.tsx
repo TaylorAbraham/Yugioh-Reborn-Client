@@ -55,6 +55,8 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
             flexDirection: 'column',
             alignItems: 'center',
             minWidth: '80%',
+            maxHeight: '90%',
+            overflow: 'scroll',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
