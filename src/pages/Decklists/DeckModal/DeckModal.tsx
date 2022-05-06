@@ -83,7 +83,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
             <ToggleButton value="text">Text</ToggleButton>
           </ToggleButtonGroup>
           {viewMode === 'visual' ? (
-            <Box sx={{ mx: '50px', mt: 2 }}>
+            <Box sx={{ mx: '50px', mb: '110px', mt: 2 }}>
               <div className="card-list__card-gallery">
                 {decklist?.mainDeck.map((mainDeckItem) => (
                   <Card
