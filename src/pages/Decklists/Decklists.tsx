@@ -1,11 +1,11 @@
 import React from 'react';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import { useCardInfoContext } from '../../components/CardInfoContext';
 import { FETCH_STATES } from '../../constants';
-import Card from '../../components/Card';
 import PageLoading from '../../components/PageLoading';
 import ErrorCard from '../../components/ErrorCard';
+import DeckCard from '../../components/DeckCard';
 
 const Decklists = (): JSX.Element => {
   const { fetchState, decklists } = useCardInfoContext();
@@ -22,43 +22,17 @@ const Decklists = (): JSX.Element => {
             of these decks have been tested against each other and the playing field overall is
             quite level!
           </Typography>
-          {decklists.map((decklist) => (
-            <>
-              <Divider sx={{ my: 3 }} />
-              <div key={decklist.name}>
-                <Typography variant="h2" align="center">
-                  {decklist.name}
-                </Typography>
-                <Typography
-                  variant="body1"
-                  align="center"
-                  sx={{ maxWidth: '45rem', margin: 'auto' }}
-                >
-                  {decklist.description}
-                </Typography>
-                <div className="card-list__card-gallery">
-                  {decklist.mainDeck.map((mainDeckItem) => (
-                    <Card
-                      card={mainDeckItem.card}
-                      quantity={mainDeckItem.quantity}
-                      legality={mainDeckItem.card.legality}
-                      key={mainDeckItem.card.id}
-                    />
-                  ))}
-                </div>
-                <div className="card-list__card-gallery">
-                  {decklist.extraDeck.map((extraDeckItem) => (
-                    <Card
-                      card={extraDeckItem.card}
-                      quantity={extraDeckItem.quantity}
-                      legality={extraDeckItem.card.legality}
-                      key={extraDeckItem.card.id}
-                    />
-                  ))}
-                </div>
-              </div>
-            </>
-          ))}
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '2rem',
+            }}
+          >
+            {decklists.map((decklist) => (
+              <DeckCard key={decklist.name} decklist={decklist} />
+            ))}
+          </Box>
         </div>
       )}
       {fetchState === FETCH_STATES.LOADING && <PageLoading />}
