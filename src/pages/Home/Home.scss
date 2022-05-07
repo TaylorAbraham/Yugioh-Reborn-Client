@@ -1,5 +1,8 @@
+@use 'src/constants';
+
 .home {
   &__splash-img {
+    height: calc(95vh - constants.$headerHeight);
     background: url('img/splash.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
