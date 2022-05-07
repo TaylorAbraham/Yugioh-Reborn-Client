@@ -16,6 +16,40 @@ const Home = () => {
           </Typography>
         </Box>
       </Box>
+      <Box m={4}>
+        <Typography variant="h2" mb={1}>
+          Format Background
+        </Typography>
+        <Typography variant="h3">Motivation</Typography>
+        <Typography variant="body2" mb={1}>
+          Coming Soon!
+        </Typography>
+        <Typography variant="h3" mt={1}>
+          Format Vision
+        </Typography>
+        <Typography variant="body2" mb={1}>
+          Coming Soon!
+        </Typography>
+        <Typography variant="h2" mt={3} mb={1}>
+          Format Details
+        </Typography>
+        <Typography variant="h3">Legality</Typography>
+        <Typography variant="body2" mb={1}>
+          Coming Soon!
+        </Typography>
+        <Typography variant="h3" mt={1}>
+          Rules
+        </Typography>
+        <Typography variant="body2" mb={1}>
+          Coming Soon!
+        </Typography>
+        <Typography variant="h3" mt={1}>
+          How & Where to Play
+        </Typography>
+        <Typography variant="body2" mb={1}>
+          Coming Soon!
+        </Typography>
+      </Box>
     </Box>
   );
 };
