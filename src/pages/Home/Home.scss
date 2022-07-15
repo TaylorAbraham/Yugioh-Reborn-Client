@@ -18,4 +18,18 @@
     color: white;
     margin: auto;
   }
+
+  &__format-info {
+    background: #f2f2ff;
+    display: flex;
+    justify-content: center;
+
+    &-content {
+      max-width: 800px;
+
+      ol {
+        margin: 0.4em 0;
+      }
+    }
+  }
 }

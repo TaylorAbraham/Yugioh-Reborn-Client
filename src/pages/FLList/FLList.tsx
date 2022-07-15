@@ -63,7 +63,7 @@ const FLList = (): JSX.Element => {
               rel="noreferrer"
               href="https://yugioh.fandom.com/wiki/October_2014_Lists_(TCG)"
             >
-              October 2014 F&L list
+              October 2014 F&L List
             </a>
             . <OpenInNewIcon sx={{ fontSize: '1rem', mb: '-3px' }} />
           </Typography>
