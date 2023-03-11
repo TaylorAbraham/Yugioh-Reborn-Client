@@ -1,8 +1,13 @@
+@use 'src/constants';
+
 .card-list {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 100px 150px 100px;
+
+  @media (min-width: constants.$breakpoint-md) {
+    margin: 0 100px 150px 100px;
+  }
 
   &__card-gallery {
     display: flex;

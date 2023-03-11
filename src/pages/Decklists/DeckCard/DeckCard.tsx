@@ -14,7 +14,8 @@ const DeckCard = ({ decklist, onClick }: DeckCardProps): JSX.Element => {
   return (
     <Card
       sx={{
-        width: 400,
+        width: '100%',
+        maxWidth: 400,
       }}
     >
       <CardActionArea sx={{ height: '100%' }} onClick={() => onClick(decklist)}>

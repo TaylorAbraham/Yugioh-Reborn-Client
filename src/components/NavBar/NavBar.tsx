@@ -1,14 +1,61 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@mui/material';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AppBar, IconButton, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import './NavBar.scss';
 
 const NavBar = (): JSX.Element => {
   const path = useLocation().pathname;
+  const navigate = useNavigate();
+
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const mobileMenuOpen = !!anchorEl;
+
+  const openMobileMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const closeMobileMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const closeAndNavigate = (href: string) => {
+    closeMobileMenu();
+    navigate(href);
+  };
 
   return (
     <AppBar className="navbar" position="static">
-      <Toolbar>
+      {/* Mobile Toolbar */}
+      <Toolbar sx={{ display: { xs: 'flex', sm: 'none' }, justifyContent: 'space-between' }}>
+        <Typography variant="h6" className="navbar__title">
+          <Link to="/">Yugioh Reborn</Link>
+        </Typography>
+        <IconButton
+          size="large"
+          edge="end"
+          color="inherit"
+          aria-label="menu"
+          onClick={openMobileMenu}
+        >
+          <MenuIcon />
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          open={mobileMenuOpen}
+          onClose={closeMobileMenu}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+          <MenuItem onClick={() => closeAndNavigate('/')}>Home</MenuItem>
+          <MenuItem onClick={() => closeAndNavigate('/decklists')}>Decklists</MenuItem>
+          <MenuItem onClick={() => closeAndNavigate('/fllist')}>Forbidden & Limited List</MenuItem>
+          <MenuItem onClick={() => closeAndNavigate('/addlist')}>Addition List</MenuItem>
+        </Menu>
+      </Toolbar>
+      {/* Desktop Toolbar */}
+      <Toolbar sx={{ display: { xs: 'none', sm: 'flex' } }}>
         <Typography variant="h6" className="navbar__title">
           <Link to="/">Yugioh Reborn</Link>
         </Typography>

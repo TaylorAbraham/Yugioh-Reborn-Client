@@ -3,10 +3,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Backdrop from '@mui/material/Backdrop';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
+import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
+import CloseIcon from '@mui/icons-material/Close';
 import Card from '../../../components/Card';
 
 type DeckModalProps = {
@@ -42,10 +43,6 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
       open={isOpen}
       onClose={onClose}
       closeAfterTransition
-      BackdropComponent={Backdrop}
-      BackdropProps={{
-        timeout: 500,
-      }}
     >
       <Fade in={isOpen}>
         <Box
@@ -55,7 +52,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
             flexDirection: 'column',
             alignItems: 'center',
             minWidth: '80%',
-            maxHeight: '90%',
+            maxHeight: '85%',
             overflowY: 'scroll',
             top: '50%',
             left: '50%',
@@ -66,6 +63,15 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
             p: 4,
           }}
         >
+          <IconButton
+            sx={{ position: 'absolute', top: 5, right: 5 }}
+            size="large"
+            color="inherit"
+            aria-label="close"
+            onClick={onClose}
+          >
+            <CloseIcon />
+          </IconButton>
           <Typography variant="h2">{decklist?.name}</Typography>
           <Typography
             sx={{ textAlign: 'center', maxWidth: '60rem', mx: 'auto', my: 1 }}
@@ -83,7 +89,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
             <ToggleButton value="text">Text</ToggleButton>
           </ToggleButtonGroup>
           {viewMode === 'visual' ? (
-            <Box sx={{ mx: '50px', mb: '110px', mt: 2 }}>
+            <>
               <div className="card-list__card-gallery">
                 {decklist?.mainDeck.map((mainDeckItem) => (
                   <Card
@@ -104,7 +110,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
                   />
                 ))}
               </div>
-            </Box>
+            </>
           ) : (
             <TextField
               multiline
@@ -112,7 +118,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
               value={deckText}
               variant="outlined"
               color="primary"
-              sx={{ mt: 2, width: '30rem' }}
+              sx={{ mt: 2, maxWidth: '30rem', width: '100%' }}
             />
           )}
         </Box>

@@ -52,81 +52,85 @@ const FLList = (): JSX.Element => {
   return (
     <div className="content">
       {fetchState === FETCH_STATES.DONE && (
-        <div className="card-list">
-          <Typography variant="h1" sx={{ mt: 3 }}>
-            Forbidden & Limited List
-          </Typography>
-          <Typography className="card-list__about" variant="body1" sx={{ mt: 1 }}>
-            This format&apos;s banlist is based on the TCG banlist of the time, which was the{' '}
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://yugioh.fandom.com/wiki/October_2014_Lists_(TCG)"
-            >
-              October 2014 F&L List
-            </a>
-            . <OpenInNewIcon sx={{ fontSize: '1rem', mb: '-3px' }} />
-          </Typography>
-          <Button variant="contained" onClick={downloadFLList} sx={{ m: 3 }}>
-            Download Banlist + Addlist
-          </Button>
-          <Divider sx={{ mt: 1, mb: 3 }} />
-          <Typography variant="h2">
-            Forbidden Cards <BlockIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
-          </Typography>
-          <div className="card-list__card-gallery">
-            {flList.forbidden.map((fLListItem) => (
-              <Card
-                card={fLListItem.card}
-                highlighted={!!fLListItem.remark}
-                remark={fLListItem.remark}
-                key={fLListItem.id}
-              />
-            ))}
+        <>
+          <div className="header">
+            <Typography variant="h1" sx={{ mt: 3 }}>
+              Forbidden & Limited List
+            </Typography>
+            <Typography className="card-list__about" variant="body1" sx={{ mt: 1 }}>
+              This format&apos;s banlist is based on the TCG banlist of the time, which was the{' '}
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://yugioh.fandom.com/wiki/October_2014_Lists_(TCG)"
+              >
+                October 2014 F&L List
+              </a>
+              . <OpenInNewIcon sx={{ fontSize: '1rem', mb: '-3px' }} />
+            </Typography>
+            <Button variant="contained" onClick={downloadFLList} sx={{ m: 3 }}>
+              Download Banlist + Addlist
+            </Button>
           </div>
-          <Divider sx={{ my: 3 }} />
-          <Typography variant="h2">
-            Limited Cards <LooksOneOutlinedIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
-          </Typography>
-          <div className="card-list__card-gallery">
-            {flList.limited.map((fLListItem) => (
-              <Card
-                card={fLListItem.card}
-                highlighted={!!fLListItem.remark}
-                remark={fLListItem.remark}
-                key={fLListItem.id}
-              />
-            ))}
+          <div className="card-list">
+            <Divider sx={{ mt: 1, mb: 3 }} />
+            <Typography variant="h2">
+              Forbidden Cards <BlockIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
+            </Typography>
+            <div className="card-list__card-gallery">
+              {flList.forbidden.map((fLListItem) => (
+                <Card
+                  card={fLListItem.card}
+                  highlighted={!!fLListItem.remark}
+                  remark={fLListItem.remark}
+                  key={fLListItem.id}
+                />
+              ))}
+            </div>
+            <Divider sx={{ my: 3 }} />
+            <Typography variant="h2">
+              Limited Cards <LooksOneOutlinedIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
+            </Typography>
+            <div className="card-list__card-gallery">
+              {flList.limited.map((fLListItem) => (
+                <Card
+                  card={fLListItem.card}
+                  highlighted={!!fLListItem.remark}
+                  remark={fLListItem.remark}
+                  key={fLListItem.id}
+                />
+              ))}
+            </div>
+            <Divider sx={{ my: 3 }} />
+            <Typography variant="h2">
+              Semi-Limited Cards <Filter2Icon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
+            </Typography>
+            <div className="card-list__card-gallery">
+              {flList.semiLimited.map((fLListItem) => (
+                <Card
+                  card={fLListItem.card}
+                  highlighted={!!fLListItem.remark}
+                  remark={fLListItem.remark}
+                  key={fLListItem.id}
+                />
+              ))}
+            </div>
+            <Divider sx={{ my: 3 }} />
+            <Typography variant="h2">
+              Newly Unlimited Cards <LockOpenIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
+            </Typography>
+            <div className="card-list__card-gallery">
+              {flList.unlimited.map((fLListItem) => (
+                <Card
+                  card={fLListItem.card}
+                  highlighted={!!fLListItem.remark}
+                  remark={fLListItem.remark}
+                  key={fLListItem.id}
+                />
+              ))}
+            </div>
           </div>
-          <Divider sx={{ my: 3 }} />
-          <Typography variant="h2">
-            Semi-Limited Cards <Filter2Icon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
-          </Typography>
-          <div className="card-list__card-gallery">
-            {flList.semiLimited.map((fLListItem) => (
-              <Card
-                card={fLListItem.card}
-                highlighted={!!fLListItem.remark}
-                remark={fLListItem.remark}
-                key={fLListItem.id}
-              />
-            ))}
-          </div>
-          <Divider sx={{ my: 3 }} />
-          <Typography variant="h2">
-            Newly Unlimited Cards <LockOpenIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
-          </Typography>
-          <div className="card-list__card-gallery">
-            {flList.unlimited.map((fLListItem) => (
-              <Card
-                card={fLListItem.card}
-                highlighted={!!fLListItem.remark}
-                remark={fLListItem.remark}
-                key={fLListItem.id}
-              />
-            ))}
-          </div>
-        </div>
+        </>
       )}
       {fetchState === FETCH_STATES.LOADING && <PageLoading />}
       {fetchState === FETCH_STATES.ERROR && <ErrorCard />}
