@@ -1,4 +1,6 @@
-type ServerError = {
+import { SERVER_ERRORS } from "./constants";
+
+export type ServerError = {
   error: {
     msg: string;
     type: SERVER_ERRORS;
@@ -24,7 +26,7 @@ type Card = {
   legality: number;
 };
 
-type CardDB = Record<string, Card>;
+export type CardDB = Record<string, Card>;
 
 type CardSetInfo = {
   set_name: string;
@@ -40,22 +42,23 @@ type CardImageInfo = {
   image_url_small: string;
 };
 
-type DecklistItem = {
+type DecklistEntry = {
   quantity: number;
   card: Card;
 };
 
-type Decklist = {
+export type Decklist = {
   name: string;
   description: string;
   imgURL: string;
-  mainDeck: DecklistItem[];
-  extraDeck: DecklistItem[];
+  mainDeck: DecklistEntry[];
+  extraDeck: DecklistEntry[];
+  sideDeck: DecklistEntry[];
 };
 
-type Decklists = Decklist[];
+export type Decklists = Decklist[];
 
-type FLListItem = {
+type FLListEntry = {
   id: number;
   card: Card;
   legality: string;
@@ -63,14 +66,14 @@ type FLListItem = {
   notes: string;
 };
 
-type FLList = {
-  forbidden: FLListItem[];
-  limited: FLListItem[];
-  semiLimited: FLListItem[];
-  unlimited: FLListItem[];
+export type FLList = {
+  forbidden: FLListEntry[];
+  limited: FLListEntry[];
+  semiLimited: FLListEntry[];
+  unlimited: FLListEntry[];
 };
 
-type AddListItem = {
+type AddListEntry = {
   id: number;
   card: Card;
   setCode: string;
@@ -80,7 +83,7 @@ type AddListItem = {
 
 type AddListGroup = {
   name: string;
-  cards: AddListItem[];
+  cards: AddListEntry[];
 };
 
-type AddList = AddListGroup[];
+export type AddList = AddListGroup[];
