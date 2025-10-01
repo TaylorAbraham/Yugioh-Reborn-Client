@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import FLIcon from './FLIcon';
 import './Card.scss';
+import { type Card } from '../../types';
 
 type CardProps = {
   card: Card;
@@ -39,9 +40,7 @@ const Card = ({ card, highlighted, remark, quantity, legality }: CardProps): JSX
           )}
           <img
             src={card.images[0].image_url}
-            className={`card__img card__img-view ${highlighted && 'card__img--highlighted'} ${
-              isHovered && 'card__img--hover'
-            }`}
+            className={`card__img card__img-view ${highlighted && 'card__img--highlighted'} ${isHovered && 'card__img--hover'}`}
           />
           <img
             src={card.images[0].image_url}

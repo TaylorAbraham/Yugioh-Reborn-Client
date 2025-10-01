@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import { CardActionArea } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { type Decklist } from '../../../types';
 
 type DeckCardProps = {
   decklist: Decklist;

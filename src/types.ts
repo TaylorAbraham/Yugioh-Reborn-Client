@@ -7,7 +7,7 @@ export type ServerError = {
   };
 };
 
-type Card = {
+export type Card = {
   id: number;
   name: string;
   type: string;
