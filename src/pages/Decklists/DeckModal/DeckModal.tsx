@@ -61,6 +61,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
             border: '2px solid #000',
             boxShadow: 24,
             p: 4,
+            pb: 18,
           }}
         >
           <IconButton
