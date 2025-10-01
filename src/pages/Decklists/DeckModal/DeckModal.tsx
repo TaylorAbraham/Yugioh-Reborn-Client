@@ -26,7 +26,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
 
   const downloadDecklist = (): void => {
     if (decklist) {
-      let stringifiedDecklist = '#created by Yu-Gi-Oh! Reborn\n#main';
+      let stringifiedDecklist = '#created by Yu-Gi-Oh! Reborn\n#main\n';
       decklist.mainDeck.map((entry) => {
         stringifiedDecklist += `${entry.card.id}\n`.repeat(entry.quantity);
       });
