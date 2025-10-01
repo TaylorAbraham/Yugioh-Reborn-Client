@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '@mui/material/Card';
+import MUICard from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Box from '@mui/material/Box';
@@ -11,7 +11,7 @@ const githubIssuesUrl = 'https://github.com/TaylorAbraham/Yugioh-Reborn-Client/i
 
 const ErrorCard = (): JSX.Element => {
   return (
-    <Card
+    <MUICard
       sx={{
         width: 400,
         position: 'absolute',
@@ -44,7 +44,7 @@ const ErrorCard = (): JSX.Element => {
           View GitHub
         </Link>
       </CardActions>
-    </Card>
+    </MUICard>
   );
 };
 

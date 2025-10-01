@@ -9,7 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
-import Card from '../../../components/Card';
+import CardDisplay from '../../../components/CardDisplay';
 import { type Decklist } from '../../../types';
 
 type DeckModalProps = {
@@ -126,7 +126,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
             <>
               <div className="card-list__card-gallery">
                 {decklist?.mainDeck.map((mainDeckEntry) => (
-                  <Card
+                  <CardDisplay
                     card={mainDeckEntry.card}
                     quantity={mainDeckEntry.quantity}
                     legality={mainDeckEntry.card.legality}
@@ -136,7 +136,7 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
               </div>
               <div className="card-list__card-gallery">
                 {decklist?.extraDeck.map((extraDeckEntry) => (
-                  <Card
+                  <CardDisplay
                     card={extraDeckEntry.card}
                     quantity={extraDeckEntry.quantity}
                     legality={extraDeckEntry.card.legality}

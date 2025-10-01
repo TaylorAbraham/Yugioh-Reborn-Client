@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import PageLoading from '../../components/PageLoading';
 import ErrorCard from '../../components/ErrorCard';
 import { useCardInfoContext } from '../../components/CardInfoContext';
-import Card from '../../components/Card';
+import CardDisplay from '../../components/CardDisplay';
 import { FETCH_STATES } from '../../constants';
 
 const AddList = (): JSX.Element => {
@@ -33,7 +33,7 @@ const AddList = (): JSX.Element => {
                   </Typography>
                   <div className="card-list__card-gallery">
                     {group.cards.map((addListEntry) => (
-                      <Card
+                      <CardDisplay
                         card={addListEntry.card}
                         legality={addListEntry.card.legality}
                         key={addListEntry.id}

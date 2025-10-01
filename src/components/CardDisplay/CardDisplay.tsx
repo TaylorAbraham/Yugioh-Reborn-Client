@@ -13,7 +13,7 @@ type CardProps = {
   legality?: number;
 };
 
-const Card = ({ card, highlighted, remark, quantity, legality }: CardProps): JSX.Element => {
+const CardDisplay = ({ card, highlighted, remark, quantity, legality }: CardProps): JSX.Element => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -70,4 +70,4 @@ const Card = ({ card, highlighted, remark, quantity, legality }: CardProps): JSX
   );
 };
 
-export default Card;
+export default CardDisplay;

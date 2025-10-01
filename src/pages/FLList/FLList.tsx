@@ -10,7 +10,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import PageLoading from '../../components/PageLoading';
 import ErrorCard from '../../components/ErrorCard';
 import { useCardInfoContext } from '../../components/CardInfoContext';
-import Card from '../../components/Card';
+import CardDisplay from '../../components/CardDisplay';
 import { FETCH_STATES, LEGALITY } from '../../constants';
 import './FLList.scss';
 
@@ -79,7 +79,7 @@ const FLList = (): JSX.Element => {
             </Typography>
             <div className="card-list__card-gallery">
               {flList.forbidden.map((fLListEntry) => (
-                <Card
+                <CardDisplay
                   card={fLListEntry.card}
                   highlighted={!!fLListEntry.remark}
                   remark={fLListEntry.remark}
@@ -93,7 +93,7 @@ const FLList = (): JSX.Element => {
             </Typography>
             <div className="card-list__card-gallery">
               {flList.limited.map((fLListEntry) => (
-                <Card
+                <CardDisplay
                   card={fLListEntry.card}
                   highlighted={!!fLListEntry.remark}
                   remark={fLListEntry.remark}
@@ -107,7 +107,7 @@ const FLList = (): JSX.Element => {
             </Typography>
             <div className="card-list__card-gallery">
               {flList.semiLimited.map((fLListEntry) => (
-                <Card
+                <CardDisplay
                   card={fLListEntry.card}
                   highlighted={!!fLListEntry.remark}
                   remark={fLListEntry.remark}
@@ -121,7 +121,7 @@ const FLList = (): JSX.Element => {
             </Typography>
             <div className="card-list__card-gallery">
               {flList.unlimited.map((fLListEntry) => (
-                <Card
+                <CardDisplay
                   card={fLListEntry.card}
                   highlighted={!!fLListEntry.remark}
                   remark={fLListEntry.remark}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '@mui/material/Card';
+import MUICard from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { CardActionArea } from '@mui/material';
@@ -13,7 +13,7 @@ type DeckCardProps = {
 };
 const DeckCard = ({ decklist, onClick }: DeckCardProps): JSX.Element => {
   return (
-    <Card
+    <MUICard
       sx={{
         width: '100%',
         maxWidth: 400,
@@ -30,7 +30,7 @@ const DeckCard = ({ decklist, onClick }: DeckCardProps): JSX.Element => {
           <Typography variant="body2">{decklist.description}</Typography>
         </CardContent>
       </CardActionArea>
-    </Card>
+    </MUICard>
   );
 };
 
