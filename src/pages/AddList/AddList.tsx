@@ -32,11 +32,11 @@ const AddList = (): JSX.Element => {
                     {group.name}
                   </Typography>
                   <div className="card-list__card-gallery">
-                    {group.cards.map((addListItem) => (
+                    {group.cards.map((addListEntry) => (
                       <Card
-                        card={addListItem.card}
-                        legality={addListItem.card.legality}
-                        key={addListItem.id}
+                        card={addListEntry.card}
+                        legality={addListEntry.card.legality}
+                        key={addListEntry.id}
                       />
                     ))}
                   </div>

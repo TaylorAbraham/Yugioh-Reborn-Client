@@ -7,8 +7,10 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import Card from '../../../components/Card';
+import { type Decklist } from '../../../types';
 
 type DeckModalProps = {
   isOpen: boolean;
@@ -22,12 +24,40 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
   const [viewMode, setViewMode] = useState<ViewMode>('visual');
   const [deckText, setDeckText] = useState('');
 
+  const downloadDecklist = (): void => {
+    if (decklist) {
+      let stringifiedDecklist = '#created by Yu-Gi-Oh! Reborn\n#main';
+      decklist.mainDeck.map((entry) => {
+        stringifiedDecklist += `${entry.card.id}\n`.repeat(entry.quantity);
+      });
+      stringifiedDecklist += '#extra\n';
+      decklist.extraDeck.map((entry) => {
+        stringifiedDecklist += `${entry.card.id}\n`.repeat(entry.quantity);
+      });
+      stringifiedDecklist += '!side\n';
+      decklist.sideDeck.map((entry) => {
+        stringifiedDecklist += `${entry.card.id}\n`.repeat(entry.quantity);
+      });
+
+      const element = document.createElement('a');
+      element.setAttribute(
+        'href',
+        'data:text/plain;charset=utf-8,' + encodeURIComponent(stringifiedDecklist),
+      );
+      element.setAttribute('download', `${decklist.name}.ydk`);
+      element.style.display = 'none';
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    };
+  }
+
   useEffect(() => {
     if (decklist) {
       setDeckText(
-        decklist.mainDeck.map((item) => `${item.quantity} ${item.card.name}`).join('\n') +
-          '\n\n' +
-          decklist.extraDeck.map((item) => `${item.quantity} ${item.card.name}`).join('\n'),
+        decklist.mainDeck.map((entry) => `${entry.quantity} ${entry.card.name}`).join('\n') +
+        '\n\n' +
+        decklist.extraDeck.map((entry) => `${entry.quantity} ${entry.card.name}`).join('\n'),
       );
     }
   }, [decklist]);
@@ -80,6 +110,9 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
           >
             {decklist?.description}
           </Typography>
+          <Button variant="contained" onClick={downloadDecklist} sx={{ m: 3 }}>
+            Download Decklist as .ydk
+          </Button>
           <ToggleButtonGroup
             color="primary"
             value={viewMode}
@@ -92,22 +125,22 @@ const DeckModal = ({ isOpen, decklist, onClose }: DeckModalProps): JSX.Element =
           {viewMode === 'visual' ? (
             <>
               <div className="card-list__card-gallery">
-                {decklist?.mainDeck.map((mainDeckItem) => (
+                {decklist?.mainDeck.map((mainDeckEntry) => (
                   <Card
-                    card={mainDeckItem.card}
-                    quantity={mainDeckItem.quantity}
-                    legality={mainDeckItem.card.legality}
-                    key={mainDeckItem.card.id}
+                    card={mainDeckEntry.card}
+                    quantity={mainDeckEntry.quantity}
+                    legality={mainDeckEntry.card.legality}
+                    key={mainDeckEntry.card.id}
                   />
                 ))}
               </div>
               <div className="card-list__card-gallery">
-                {decklist?.extraDeck.map((extraDeckItem) => (
+                {decklist?.extraDeck.map((extraDeckEntry) => (
                   <Card
-                    card={extraDeckItem.card}
-                    quantity={extraDeckItem.quantity}
-                    legality={extraDeckItem.card.legality}
-                    key={extraDeckItem.card.id}
+                    card={extraDeckEntry.card}
+                    quantity={extraDeckEntry.quantity}
+                    legality={extraDeckEntry.card.legality}
+                    key={extraDeckEntry.card.id}
                   />
                 ))}
               </div>

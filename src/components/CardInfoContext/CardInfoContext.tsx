@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { FETCH_STATES, SERVER_ERRORS, SERVER_URL } from '../../constants';
+import type { AddList, CardDB, Decklists, FLList, ServerError } from '../../types';
 
 type CardInfoContextType = {
   cardDB: CardDB;
@@ -13,10 +14,10 @@ type AllCardInfo = { cardDB: CardDB; decklists: Decklists; flList: FLList; addLi
 
 type AllCardInfoResponse = AllCardInfo | ServerError;
 
-// Custom type guards
 const isAllCardInfo = (json: AllCardInfoResponse): json is AllCardInfo => {
   return (json as AllCardInfo).cardDB !== undefined;
 };
+
 const CardInfoContext = createContext<CardInfoContextType>({
   cardDB: {},
   decklists: [],
@@ -25,8 +26,6 @@ const CardInfoContext = createContext<CardInfoContextType>({
   fetchState: FETCH_STATES.INIT,
 });
 
-// TS *really* doesn't like when you try to type children within a context
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CardInfoProvider = ({ children }: { children?: React.ReactNode }): JSX.Element => {
   const [fetchState, setFetchState] = useState(FETCH_STATES.INIT);
   const [cardDB, setCardDB] = useState<CardDB>({});

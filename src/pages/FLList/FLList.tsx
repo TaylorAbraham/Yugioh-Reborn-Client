@@ -19,16 +19,16 @@ const FLList = (): JSX.Element => {
 
   const downloadFLList = (): void => {
     let stringifiedFLList = '#[Yugioh Reborn]\n!Yugioh Reborn\n$whitelist\n#Forbidden\n';
-    flList.forbidden.map((item) => {
-      stringifiedFLList += `${item.card.id} 0 --${item.card.name}\n`;
+    flList.forbidden.map((entry) => {
+      stringifiedFLList += `${entry.card.id} 0 --${entry.card.name}\n`;
     });
     stringifiedFLList += '#Limited\n';
-    flList.limited.map((item) => {
-      stringifiedFLList += `${item.card.id} 1 --${item.card.name}\n`;
+    flList.limited.map((entry) => {
+      stringifiedFLList += `${entry.card.id} 1 --${entry.card.name}\n`;
     });
     stringifiedFLList += '#Semi limited\n';
-    flList.semiLimited.map((item) => {
-      stringifiedFLList += `${item.card.id} 2 --${item.card.name}\n`;
+    flList.semiLimited.map((entry) => {
+      stringifiedFLList += `${entry.card.id} 2 --${entry.card.name}\n`;
     });
     stringifiedFLList += '#Unlimited\n';
     for (const [_id, card] of Object.entries(cardDB)) {
@@ -78,12 +78,12 @@ const FLList = (): JSX.Element => {
               Forbidden Cards <BlockIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
             </Typography>
             <div className="card-list__card-gallery">
-              {flList.forbidden.map((fLListItem) => (
+              {flList.forbidden.map((fLListEntry) => (
                 <Card
-                  card={fLListItem.card}
-                  highlighted={!!fLListItem.remark}
-                  remark={fLListItem.remark}
-                  key={fLListItem.id}
+                  card={fLListEntry.card}
+                  highlighted={!!fLListEntry.remark}
+                  remark={fLListEntry.remark}
+                  key={fLListEntry.id}
                 />
               ))}
             </div>
@@ -92,12 +92,12 @@ const FLList = (): JSX.Element => {
               Limited Cards <LooksOneOutlinedIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
             </Typography>
             <div className="card-list__card-gallery">
-              {flList.limited.map((fLListItem) => (
+              {flList.limited.map((fLListEntry) => (
                 <Card
-                  card={fLListItem.card}
-                  highlighted={!!fLListItem.remark}
-                  remark={fLListItem.remark}
-                  key={fLListItem.id}
+                  card={fLListEntry.card}
+                  highlighted={!!fLListEntry.remark}
+                  remark={fLListEntry.remark}
+                  key={fLListEntry.id}
                 />
               ))}
             </div>
@@ -106,12 +106,12 @@ const FLList = (): JSX.Element => {
               Semi-Limited Cards <Filter2Icon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
             </Typography>
             <div className="card-list__card-gallery">
-              {flList.semiLimited.map((fLListItem) => (
+              {flList.semiLimited.map((fLListEntry) => (
                 <Card
-                  card={fLListItem.card}
-                  highlighted={!!fLListItem.remark}
-                  remark={fLListItem.remark}
-                  key={fLListItem.id}
+                  card={fLListEntry.card}
+                  highlighted={!!fLListEntry.remark}
+                  remark={fLListEntry.remark}
+                  key={fLListEntry.id}
                 />
               ))}
             </div>
@@ -120,12 +120,12 @@ const FLList = (): JSX.Element => {
               Newly Unlimited Cards <LockOpenIcon sx={{ fontSize: '1.75rem', mb: '-3px' }} />
             </Typography>
             <div className="card-list__card-gallery">
-              {flList.unlimited.map((fLListItem) => (
+              {flList.unlimited.map((fLListEntry) => (
                 <Card
-                  card={fLListItem.card}
-                  highlighted={!!fLListItem.remark}
-                  remark={fLListItem.remark}
-                  key={fLListItem.id}
+                  card={fLListEntry.card}
+                  highlighted={!!fLListEntry.remark}
+                  remark={fLListEntry.remark}
+                  key={fLListEntry.id}
                 />
               ))}
             </div>

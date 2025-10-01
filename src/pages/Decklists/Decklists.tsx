@@ -5,6 +5,7 @@ import { useCardInfoContext } from '../../components/CardInfoContext';
 import { FETCH_STATES } from '../../constants';
 import PageLoading from '../../components/PageLoading';
 import ErrorCard from '../../components/ErrorCard';
+import { type Decklist } from '../../types';
 import DeckCard from './DeckCard';
 import DeckModal from './DeckModal';
 
